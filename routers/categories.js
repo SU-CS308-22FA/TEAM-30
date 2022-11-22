@@ -25,7 +25,7 @@ router.post('/',async (req,res)=>{
     })
     cat= await cat.save();
     if(!cat){
-        return res.status(404).send("Category can't be created")
+        return res.status(404).send("Category can't be created!")
     }
     res.send(cat);
     
