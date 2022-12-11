@@ -7,12 +7,12 @@ const categorySchema = mongoose.Schema({
     },
     color:{
         type:String,
-        required:true,
+        required:false,
+        default:"#000000"
     },
     icon:{
         type:String,
-        required:false,
-        default:'',
+        required:true
     },
 });
 categorySchema.virtual('id').get(function(){
