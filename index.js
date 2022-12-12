@@ -35,7 +35,7 @@ app.use(`${route}/orders`,orderRouter);
 
 
 
-
+const port= process.env.PORT || 3000;
 mongoose.connect(process.env.CONNECTION_STRING)
 .then(()=>{
     console.log('Database is connected');
@@ -43,6 +43,6 @@ mongoose.connect(process.env.CONNECTION_STRING)
 .catch((err)=>{
     console.log(err);
 })
-app.listen(3000,()=>{
+app.listen(port,()=>{
     console.log('listening canım');
 })
