@@ -36,7 +36,7 @@ app.use(`${route}/orders`,orderRouter);
 
 
 
-mongoose.connect("mongodb+srv://ozanbasaran:Ozan1996@308proj.ur2hbuj.mongodb.net/308-Proj?retryWrites=true&w=majority")
+mongoose.connect(process.env.CONNECTION_STRING)
 .then(()=>{
     console.log('Database is connected');
 })
