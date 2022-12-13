@@ -1,5 +1,6 @@
 #TFFSHOP
 https://su-cs308-22fa.github.io/Team30-FrontEnd/
+Front-End Repository Link: https://github.com/SU-CS308-22FA/Team30-FrontEnd
 
 Author: Ozan Başaran
 
