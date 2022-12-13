@@ -1,6 +1,9 @@
 #TFFSHOP
 https://su-cs308-22fa.github.io/Team30-FrontEnd/
 
+Author: Ozan Başaran
+
+Acknowledgements: Not a single person apart from myself has contributed to the developemnt of this project.
 
 Project Description:
 This project aims to create an e-commerce site where Turkish Football Federation sells the items directly.
