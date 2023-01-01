@@ -24,7 +24,7 @@ let editButton = driver.findElement(By.id('edit-button'));
 editButton.click();
 
 // Wait for the edit form to load
-driver.wait(2000);
+driver.wait(3000);
 
 // Find the "isDiscounted" radio button and click on it
 let radioButton = driver.findElement(By.id('isdisc'));
