@@ -32,7 +32,11 @@ const storage = multer.diskStorage({
   const uploadOptions= multer({ storage: storage })
 
 
-
+/**
+ * This function sends a get request to the backend, if there exists products, it builds and returns a list
+ * @param {link} input the get-link used by the back-end
+ * @returns {productList} a list of all products
+ */
 router.get(`/`, async (req,res)=>{
     let filter={};
     if(req.query.categories){
@@ -44,6 +48,11 @@ router.get(`/`, async (req,res)=>{
     }
     res.send(productList);
 })
+/**
+ * This function sends a get request to the backend, if there exists a product with given id, it builds and returns the product
+ * @param {link} input the get-link used by the back-end, the link also holds the id value in it
+ * @returns {product} the wanted product
+ */
 router.get(`/:id`, async (req,res)=>{
     if(!mongoose.isValidObjectId(req.params.id)){
         return res.status(400).send('Invalid Product ID')
@@ -54,7 +63,11 @@ router.get(`/:id`, async (req,res)=>{
     }
     res.status(200).send(cat);
 })
-
+/**
+ * This function sends a post request to the backend. Function also checks the input for allowed doc types, Builds the product with the uploaded image and attrbiutes
+ * @param {link} input the post-link used by the back-end.
+ * @returns {product} the created variable
+ */
 router.post(`/`, uploadOptions.single('image') ,async (req,res)=>{
     const category = await Category.findById(req.body.category);
     if(!category){
@@ -87,7 +100,11 @@ router.post(`/`, uploadOptions.single('image') ,async (req,res)=>{
     }
     res.send(prod)
     });
-
+    /**
+ * This function sends a put request to the backend. Function also checks the input for allowed doc types, Updates the wanted product and returns the updated product
+ * @param {link} input the put-link used by the back-end.
+ * @returns {product} the updated
+ */
     router.put('/:id',  uploadOptions.single('image') ,async(req,res)=>{
         if(!mongoose.isValidObjectId(req.params.id)){
             return res.status(400).send('Invalid Product ID')
@@ -133,6 +150,11 @@ router.post(`/`, uploadOptions.single('image') ,async (req,res)=>{
             }
             res.send(upd_product);
     });
+    /**
+ * This function sends a delete request to the backend. If the product exists with the wanted id, Function will return HTTP(200)
+ * @param {link} input the delete-link used by the back-end.
+ * @returns {HttpResponser} output If deleted succesfully, HTTP(200), if not (404 or 400) 
+ */
     router.delete('/:id',(req,res)=>{
         if(!mongoose.isValidObjectId(req.params.id)){
             return res.status(400).send('Invalid Product ID')
@@ -147,6 +169,11 @@ router.post(`/`, uploadOptions.single('image') ,async (req,res)=>{
             return res.status(400).json({success:false, error:err})
         })
     });
+    /**
+ * This function sends a get request to the backend.
+ * @param {link} input the get-link used by the back-end.
+ * @returns {JSON} A JSON variable with the field count set to the product count
+ */
     router.get(`/get/count`, async (req,res)=>{
         const productCount = await Product.countDocuments();
         if(!productCount){
@@ -156,6 +183,11 @@ router.post(`/`, uploadOptions.single('image') ,async (req,res)=>{
             count: productCount,
         });
     })
+     /**
+ * This function sends a get request to the backend.
+ * @param {link} input the get-link used by the back-end.
+ * @returns {productList} List of products where isFeatured variable is set to true
+ */
     router.get(`/get/featured`, async (req,res)=>{
         const productList = await Product.find({isFeatured:true});
         if(!productList){
@@ -163,6 +195,11 @@ router.post(`/`, uploadOptions.single('image') ,async (req,res)=>{
         }
         res.send(productList);
     })
+     /**
+ * This function sends a get request to the backend.
+ * @param {link} input the get-link used by the back-end.
+ * @returns {productList} List of products where isDiscounted variable is set to true
+ */
     router.get(`/get/discounted`, async (req,res)=>{
         const productList = await Product.find({isDiscounted:true});
         if(!productList){
